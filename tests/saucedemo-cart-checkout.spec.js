@@ -23,7 +23,11 @@ test('TC_CART_001 - Add product to shopping cart', async ({ page }) => {
 
     await page.locator('.shopping_cart_link').click();
 
-    await expect(page.locator('.inventory_item_name'))
+    // Verify navigation to cart
+    await expect(page).toHaveURL(/cart.html/);
+
+    // Verify the specific product inside the cart
+    await expect(page.locator('.cart_item .inventory_item_name'))
         .toHaveText('Sauce Labs Backpack');
 });
 
